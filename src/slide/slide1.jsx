@@ -1,7 +1,7 @@
 const Story = ({ story }) => {
 
     return (
-        <div className='flex flex-col justify-between px-2 min-w-80 
+        <div className='flex flex-col justify-between px-2 md:min-w-80  min-w-60
                         bg-(--color4) hover:bg-(--color4)/80 text-white p-2'  >
 
             <div className="flex-1 text-justify" >
@@ -94,10 +94,11 @@ export const ScrollProduct = () => {
 
 
     return (
-
-        <div className='flex overflow-auto h-96 gap-2' >
+        <>
+        <div className="text-2xl font-bold text-(--color4)" >Hear From Our Clients</div>
+        <div className='flex overflow-auto h-96 gap-2 w-[95%] p-4 box-shadow-1 my-4 rounded-lg' >
             {stories && stories.map((story, index) => <Story key={index} story={story} />)}
         </div>
-
+        </>
     )
 }

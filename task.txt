@@ -1,0 +1,5 @@
+Live : https://nextjs-shoaib221.vercel.app 
+
+#todo
+1. add env variables to vercel
+2. fix readme

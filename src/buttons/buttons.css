@@ -1,0 +1,62 @@
+.button-1234 {
+    background-color: var(--color4);
+    padding: .5rem;
+    border-radius: .5rem;
+    color: white;
+    margin: .5rem;
+    cursor: pointer;
+}
+
+
+.button-1 {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
+    border-radius: .5rem;
+    background-color: var(--color1);
+    color: var(--color2);
+    margin: .5rem;
+    min-width: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    cursor: pointer;
+    gap: .5rem;
+}
+
+
+.button-1:hover {
+    background-color: var(--color2);
+    color: var(--color1);
+}
+
+
+.button-2 {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
+    border-radius: .5rem;
+    background-color: var(--color4);
+    color: var(--color1);
+    cursor: pointer;
+}
+
+
+.gradbtn-1 {
+    background: linear-gradient(90deg, var(--color4), var(--color41), var(--color4));
+    color: white;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    /* transition: transform 0.2s ease, box-shadow 0.2s ease; */
+}
+
+.gradbtn-1:hover {
+    
+    opacity: .8;
+}

@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
+import '@/buttons/buttons.css'
+import '@/buttons/box.css'
 import { Nav } from "@/Nav/Nav";
 import { AuthProvider } from "./api/auth/nextAuth";
 import { Footer } from "@/Nav/Footer";

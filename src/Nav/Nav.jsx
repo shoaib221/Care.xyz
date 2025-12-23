@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import { FaGraduationCap } from "react-icons/fa6";
 import { useNavContext } from './context';
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
-import { getServerSession } from "next-auth"
-import { getSession } from './SessionHook';
-import { useSession } from 'next-auth/react';
+import { useSession, signIn, signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+
 
 
 export const Logo = () => {
@@ -21,19 +21,39 @@ export const Logo = () => {
 
 const ProfileLogo = () => {
     const { data: session, status } = useSession()
+    const router = useRouter()
+
 
     if (status === 'loading') return <p>Loading...</p>
 
-    if (session.user) return (
-        <div>Logout</div>
+    function SignOut(e) {
+        signOut()
+    }
+
+    if (session?.user) return (
+
+        <div className='flex'  >
+            {/* <div className='button-1234' onClick={SignOut}>Sign Out</div> */}
+            {/* { JSON.stringify( session ) } */}
+            <Image
+                src={session?.user?.image}
+                alt='Profile Photo'
+                width={48}
+                height={12}
+                className='rounded-full cursor-pointer'
+                title={session.user.email}
+            />
+            
+        </div>
     )
 
     return (
-
-        <button onClick={() => navigate("/auth")} className='button-1234' >
-            Login
-        </button>
-
+        <button className='button-1234' onClick={async () => {
+            await signOut({ redirect: false });
+            router.push('/api/auth/register');
+        }}  >
+            Sign Up
+        </button >
     )
 
 }
@@ -43,7 +63,7 @@ export const Nav = () => {
     const [session, setSession] = useState(null);
     const { LargeScreenTag, SmallScreenTag } = useNavContext();
 
-    
+
 
     return (
         <div className='flex justify-between' >
@@ -53,7 +73,7 @@ export const Nav = () => {
             <SmallScreenTag />
 
             <ProfileLogo />
-            
+
         </div>
     )
 }

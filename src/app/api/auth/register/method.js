@@ -15,8 +15,14 @@ export async function Register(data) {
 
         if (existingUser) {
             return {
-                success: false,
+                success: true,
                 message: "User already exists",
+                user: {
+                    _id: existingUser._id.toString(),
+                    username: existingUser.username,
+                    name: existingUser.name,
+                    image: existingUser.photo,
+                }
             };
         }
 
@@ -45,6 +51,7 @@ export async function Register(data) {
         return {
             success: true,
             user: newUser,
+            message: "created successfully"
         };
     } catch (err) {
         console.error(err);
