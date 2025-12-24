@@ -3,7 +3,7 @@ import "./globals.css";
 import '@/buttons/buttons.css'
 import '@/buttons/box.css'
 import { Nav } from "@/Nav/Nav";
-import { AuthProvider } from "./api/auth/nextAuth";
+import { AuthProvider } from "./nextAuth";
 import { Footer } from "@/Nav/Footer";
 import { NavProvider } from "@/Nav/context";
 

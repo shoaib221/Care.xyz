@@ -3,6 +3,7 @@
 import { useRouter, useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavContext } from '@/Nav/context';
 
 
 
@@ -10,6 +11,7 @@ const Page = () => {
     const { service_id } = useParams();
     const [service, setService] = useState(null)
     const router = useRouter()
+    const { DownWindowTag } = useNavContext()
 
     useEffect(() => {
         async function fetchService() {
@@ -27,23 +29,24 @@ const Page = () => {
     }, [service_id])
 
     return (
-        <div className='flex-1 w-full max-w-150 mx-auto p-4' >
+        <div className='flex-1 w-full max-w-150 mx-auto p-2 relative' >
+            <DownWindowTag />
             <div style={{ backgroundImage: `url(${service?.image})` }} 
-                className='w-full h-60 bg-contain bg-center bg-no-repeat'
+                className='w-full h-60 bg-cover bg-center bg-no-repeat'
             >
                 
             </div>
 
             <div className='text-2xl text-center text-(--color4) font-bold' > { service?.name } </div>
             <br/>
-            <div className='text-lg text-(--color4) font-bold text-center' >Description</div>
-            <div className='text-justify' >
+            
+            <div className='text-justify w-full' >
                 { service?.description }
             </div>
             <br/>
 
             <div className='font-bold text-lg text-center' > Availability </div>
-            <div className='text-center' >
+            <div className='text-center w-full' >
                 { service?.availability }
             </div>
 
@@ -53,7 +56,7 @@ const Page = () => {
 
             <br/>
             <button 
-                className='w-[90%] gradbtn-1 max-w-90 mx-auto block'
+                className=' gradbtn-1 w-full mx-auto block'
                 onClick={ () => router.push( `/booking/${service_id}` ) } > Book </button>
         </div>
     );

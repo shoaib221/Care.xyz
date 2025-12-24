@@ -55,12 +55,14 @@ const BookingSchema = new mongoose.Schema({
     },
     booker_id : {
         type: Types.ObjectId,
+        required: true
     },
     service_id: {
-        type: Types.ObjectId
+        type: Types.ObjectId,
+        required: true
     },
     status: {
-        tupe: String,
+        type: String,
         required: true,
         default: "pending"
     }, 
@@ -68,9 +70,14 @@ const BookingSchema = new mongoose.Schema({
         type: String,
         required: true,
         default: "unpaid"
+    },
+    transId : {
+        type: String,
+        default: ""
     }
     
-});
+}, 
+{ timestamps: true });
 
 
 export const Booking = mongoose.models.Booking || mongoose.model("Booking", BookingSchema);

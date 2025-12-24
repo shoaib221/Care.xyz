@@ -26,66 +26,57 @@ const stories = [
     {
         name: "Ayesha Rahman",
         image: "https://tse1.mm.bing.net/th/id/OIP.cV42tAwuBoNSAYftNEgzXAHaEo?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
-        scholarship: "DAAD Scholarship",
-        university: "University of Munich",
+        scholarship: "Nursing",
         comment:
-            "Winning the DAAD Scholarship completely changed my academic journey. The support, resources, and exposure I received helped me grow personally and professionally, opening doors I never thought possible before applying."
+            "I booked a home nurse for my father, and the experience exceeded expectations. The nurse was skilled, punctual, and compassionate. Our family finally felt relaxed knowing he was in capable hands."
     },
     {
         name: "Daniel Kim",
         image: "https://tse3.mm.bing.net/th/id/OIP.i4YH9hPP_yM3nXMIQDDkQwHaLL?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
-        scholarship: "Fulbright Scholarship",
-        university: "Harvard University",
-        comment:
-            "The Fulbright program offered incredible opportunities to collaborate with global researchers. Studying at Harvard allowed me to challenge myself academically and inspired me to pursue meaningful work that impacts communities worldwide."
+        scholarship: "Elderly Care",
+        comment: "The caregiver was extremely professional, patient, and caring. My mother felt safe and respected throughout the service. Communication was excellent, and everything was handled smoothly from booking to completion."
     },
     {
         name: "Maria Gonzalez",
         image: "https://tse1.mm.bing.net/th/id/OIP.4Gt3RAPOCnNj9enH1r6prAHaI-?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
-        scholarship: "Chevening Scholarship",
-        university: "University of Oxford",
+        scholarship: "Baby Sitting",
         comment:
-            "Chevening gave me confidence to push beyond limits. Oxford’s academic environment fostered creativity, leadership, and critical thinking, shaping me into a stronger version of myself ready to take on future challenges."
+            "Finding a trustworthy babysitter was always stressful, but this platform made it easy. The sitter was kind, attentive, and responsible, which gave us complete peace of mind during our absence"
     },
     {
         name: "Joshua Patel",
         image: "https://tse1.explicit.bing.net/th/id/OIP.Ir31nRT7lfY0caGpkbec3gHaLH?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
-        scholarship: "Erasmus Mundus Scholarship",
-        university: "University of Barcelona",
+        scholarship: "Baby Sitting",
         comment:
-            "Being an Erasmus scholar allowed me to study across Europe, meet diverse people, and gain knowledge from different cultures. It broadened my worldview and strengthened my passion for international development."
+            "From the first contact to service delivery, everything was well organized. Customer support helped us choose the right caregiver, and the service quality fully matched what was promised online."
     },
     {
         name: "Hana Yamada",
         image: "https://tse1.explicit.bing.net/th/id/OIP.BH6Si47Nt136YsDmFAFuQwHaEx?cb=ucfimg2&ucfimg=1&w=1280&h=824&rs=1&pid=ImgDetMain&o=7&rm=3",
-        scholarship: "MEXT Scholarship",
-        university: "University of Tokyo",
+        scholarship: "Nursing",
         comment:
-            "The MEXT Scholarship created opportunities I never imagined. Studying at UTokyo challenged me academically and culturally, helping me develop resilience, discipline, and curiosity that shaped my growth as a global learner."
+            "The home nurse arrived on time and handled medical care confidently. She explained everything clearly and made my mother comfortable. We are very satisfied with the overall quality and reliability."
     },
     {
         name: "Kevin Brown",
         image: "https://tse1.mm.bing.net/th/id/OIP.P3GWxhGR9Y_K7_-4K1fGRQHaLH?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
-        scholarship: "Commonwealth Scholarship",
-        university: "University of Toronto",
+        scholarship: "Baby Sitting",
         comment:
-            "The Commonwealth Scholarship empowered me to pursue research with real-world impact. Toronto’s vibrant academic atmosphere and supportive mentors allowed me to develop new ideas and contribute meaningfully to community-focused projects."
+            "Affordable pricing combined with excellent service quality. The babysitter was caring, friendly, and experienced. My child felt comfortable quickly, which is the most important thing for any parent."
     },
     {
         name: "Fatima Noor",
         image: "https://img.freepik.com/premium-photo/bangladeshi-female-student-black-graduation-gown_606460-87.jpg?w=2000",
-        scholarship: "Australia Awards Scholarship",
-        university: "University of Melbourne",
+        scholarship: "Elderly Care",
         comment:
-            "My experience as an Australia Awards scholar was life-changing. Melbourne offered exceptional learning experiences, supportive professors, and global networking opportunities that significantly contributed to my academic and professional growth."
+            "The caregiver was respectful, attentive, and well trained. Our elderly family member received both physical support and emotional care, making a noticeable positive difference in daily life."
     },
     {
         name: "Liam Anderson",
         image: "https://media.istockphoto.com/id/171299141/photo/englishman.jpg?s=1024x1024&w=is&k=20&c=FtS_bl0R7qNDr4ECv4RFDq895gzplUlM1kWA1Rjmk54=",
-        scholarship: "Rhodes Scholarship",
-        university: "University of Oxford",
+        scholarship: "Baby Sitting",
         comment:
-            "Becoming a Rhodes Scholar pushed me to pursue excellence. Oxford’s intellectual environment encouraged deep reflection, meaningful conversations, and personal development, helping me become a more thoughtful and impactful leader."
+            "This service has been a huge relief for our family. Finding qualified caregivers used to be difficult, but now we feel confident, supported, and secure whenever we need home care assistance."
     }
 ];
 

@@ -4,18 +4,40 @@ import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { useNavContext } from '@/Nav/context';
 
 
 const DateX = ({ set }) => {
 
-    const [time, setTime] = useState({ year: 2025, month: 1, date: 1, hour: 12 })
+    const [time, setTime] = useState(null);
 
     useEffect(() => {
+
+        async function Do(params) {
+            const now = new Date();
+            setTime({
+                year: now.getFullYear(),
+                month: now.getMonth() + 1,
+                date: now.getDate(),
+                hour: now.getHours(),
+            });
+        }
+
+        Do()
+
+    }, []);
+
+
+
+    useEffect(() => {
+        if (!time) return
         set(new Date(time.year, time.month - 1, time.date, time.hour))
     }, [time, set])
 
+    if (!time) return null; // prevents mismatch
+
     return (
-        <div className='flex gap-2 ' >
+        <div className='flex gap-8 justify-center' >
             <label >
                 Year <br />
                 <input
@@ -52,13 +74,14 @@ const Page = () => {
     const { service_id } = useParams();
     const [service, setService] = useState(null)
     const router = useRouter()
+    const { DownWindowTag } = useNavContext()
 
     const [startTime, setStartTime] = useState(new Date())
     const [endTime, setEndTime] = useState(new Date())
     const [totalHour, setTotalHour] = useState(0)
     const [totalCost, setTotalCost] = useState(0)
     const [location, setLocation] = useState({
-        division, district, city, address
+        division: "", district: "", city: "", address: ""
     })
 
 
@@ -76,10 +99,7 @@ const Page = () => {
                 setTotalHour(0)
                 setTotalCost(0)
             }
-
-
         }
-
         Do();
     }, [startTime, endTime, service])
 
@@ -102,71 +122,98 @@ const Page = () => {
 
     async function Checkout(params) {
         try {
+            if (!location.division || !location.district || !location.city || !location.address || !totalHour) {
+                alert('fill all the fields correctly')
+                return
+            }
             const info = {
                 startTime, endTime, totalCost, ...location, service_id,
             }
-            let res = await axios.post('/api/caregiving/book' , info );
+            let res = await axios.post('/api/caregiving/book', info);
+            if (res.data.ok) {
+                router.push(res.data.url)
+            }
+            else throw Error(res.data.error)
 
-        } catch(err) {
-            console.error(err);
+
+        } catch (err) {
+            console.error(err.message);
+            alert("error")
         }
     }
 
 
     return (
-        <div className='flex-1 w-full max-w-150 mx-auto p-4' >
-            <div style={{ backgroundImage: `url(${service?.image})` }}
-                className='w-full h-60 bg-contain bg-center bg-no-repeat'
-            >
+        <div className='flex-1 w-full max-w-150 mx-auto p-2 relative' >
+            <DownWindowTag />
 
-            </div>
 
-            <div className='text-xl text-center text-(--color4) font-bold' >Book for {service?.name} </div>
+            <div className='text-2xl text-center text-(--color4) font-bold' >Book for {service?.name} </div>
             <br />
 
-            <div>Your Location</div>
+
+            {/* Location */}
+            <div className='text-lg text-center text-(--color4) font-bold' >Your Location</div>
+
+
 
             <label>
-                <div>Division</div>
-                <input  ></input>
+                <div className='font-bold' >Division</div>
+                <input placeholder='Your division' value={location.division}
+                    onChange={(e) => setLocation({ ...location, division: e.target.value })}
+                    className='w-full p-2'
+                ></input>
             </label>
 
             <label>
-                <div> District </div>
-                <input></input>
+                <div className='font-bold' > District </div>
+                <input placeholder='Your district' value={location.district}
+                    onChange={(e) => setLocation(prev => { return { ...prev, district: e.target.value } })}
+                    className='w-full p-2'
+                ></input>
             </label>
 
             <label>
-                <div> City </div>
-                <input></input>
+                <div className='font-bold' > City </div>
+                <input placeholder='Your city' value={location.city}
+                    onChange={(e) => setLocation({ ...location, city: e.target.value })}
+                    className='w-full p-2'
+                ></input>
             </label>
+
+
 
             <label>
-                <div> House Address </div>
-                <input></input>
+                <div className='font-bold' > House Address </div>
+                <input placeholder='Your address' value={location.address}
+                    onChange={(e) => setLocation({ ...location, address: e.target.value })}
+                    className='w-full p-2'
+                ></input>
             </label>
 
-            <div>
-                Start hour
-                <DateX set={setStartTime} />
+            <br /><br />
 
-            </div>
+            <div className='text-lg text-center text-(--color4) font-bold' >Booking Time</div>
+
+            <div className='font-bold' > Start hour </div>
+
+            <DateX set={setStartTime} />
 
 
-            <div>
-                End hour
-                <DateX set={setEndTime} />
-            </div>
 
-            <div>Total Hour {totalHour} </div>
+            <div className='font-bold' > End hour </div>
+            <DateX set={setEndTime} />
 
-            <div>Total Cost</div>
-            <div> {totalCost} </div>
+
+            <div className='font-bold' > Total Hour {totalHour} </div>
+
+            
+             
 
             <br />
             <button
-                className='w-[90%] gradbtn-1 max-w-90 mx-auto block'
-                onClick={() => router.push(`/booking/${service_id}`)} > Checkout </button>
+                className='w-full gradbtn-1 mx-auto block'
+                onClick={Checkout} > Checkout ($ {totalCost}) </button>
         </div>
     );
 };

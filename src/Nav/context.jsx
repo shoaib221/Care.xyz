@@ -1,44 +1,49 @@
 "use client"
 
 import React, { createContext, useContext, useState } from 'react';
-
-const Navcontext = createContext()
-
+const Navcontext = createContext();
 export const useNavContext = () => useContext(Navcontext);
+import { useRouter } from 'next/navigation';
+import './nav.css';
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 export const NavProvider = ({ children }) => {
     const [navi, setNavi] = useState('/');
-    const [down1, setDown1] = useState(true);
+    const [down1, setDown1] = useState(false);
+    const router = useRouter();
 
 
     const SmallScreenTag = () => {
 
         if (down1) return (
-            <div className='flex justify-center px-6 items-center lg:hidden cursor-pointer' onClick={() => DownWindow(false)} >
-                Menu
+            <div className='text-xl flex justify-center px-6 items-center lg:hidden cursor-pointer' onClick={() => DownWindow(false)} >
+                <IoIosArrowUp />
             </div>
         )
 
         return (
-            <div className='flex justify-center px-6 items-center lg:hidden cursor-pointer' onClick={() => DownWindow(true)} >
-                Back
+            <div className='text-xl flex justify-center px-6 items-center lg:hidden cursor-pointer' onClick={() => DownWindow(true)} >
+                <IoIosArrowDown />
             </div>
         )
     }
 
     const LargeScreenTag = () => {
         return (
-            <div className='hidden lg:flex text-[0.9rem]' >
-                <div onClick={() => DownWindow(true, "/")} className={`class-1 ${navi === "home" && "active-navi"}`}  >Home</div>
-                <div onClick={() => DownWindow(true, "/all-scholarships")} className={`class-1 ${navi === "all-scholarships" && "active-navi"}`} >Scholarships</div>
+            <div className='hidden lg:flex text-[0.9rem] gap-2 justify-center' >
+                <div onClick={() => DownWindow(false, "/")} className={`nav ${navi === "/" ? "active-nav" : "" }`}  >Home</div>
+                <div onClick={() => DownWindow(false, "/my-bookings")} className={`nav ${navi === "/my-bookings" ? "active-nav" : "" }`} >Bookings</div>
             </div>
         )
     }
 
     function DownWindow( wind, path) {
-
         setDown1( wind )
-        if( path ) navigate(path)
+        if( path ) {
+            router.push( path )
+            setNavi(path)
+        }
+        
 
     }
 
@@ -46,9 +51,9 @@ export const NavProvider = ({ children }) => {
         
         return (
             
-            <div className={`${down1 ? "hidden" : "flex" } absolute z-2 h-[100%] w-[100%] bg-[var(--color1)]  flex-col items-center top-0 left-0 p-4 gap-4`}  >
-                <div onClick={() => DownWindow( true, "/")} className={ `class-1 ${navi === "home" && "active-navi" }` }  >Home</div>
-                <div onClick={() => DownWindow( true, "/all-scholarships")} className={ `class-1 ${navi === "all-scholarships" && "active-navi" }` } >Scholarships</div>                
+            <div className={`${down1 ?  "flex" : "hidden" } absolute z-2 h-[100%] w-[100%] bg-[var(--color1)]  flex-col items-center top-0 left-0 p-4 gap-4`}  >
+                <div onClick={() => DownWindow( false, "/")} className={ `nav ${navi === "/" ? "active-nav" : ""}` }  >Home</div>
+                <div onClick={() => DownWindow( false, "/my-bookings")} className={ `nav ${navi === "/my-bookings" ? "active-nav" : "" }` } >Bookings</div>                
             </div>
         )
     }

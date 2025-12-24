@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import { FaGraduationCap } from "react-icons/fa6";
+import { FaStethoscope } from "react-icons/fa";
 import { useNavContext } from './context';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -11,9 +11,9 @@ import Image from 'next/image';
 
 export const Logo = () => {
     return (
-        <div className='h-12 text-(--color4) flex gap-2' >
-            <FaGraduationCap className='h-full text-2xl' />
-            <div className='cen-ver font-black' >ScholarStream</div>
+        <div className='h-12 text-(--color4) flex gap-2 items-center' >
+            <FaStethoscope className='h-full text-2xl' />
+            <div className='cen-ver font-black text-2xl' >Care.in</div>
         </div>
     )
 };
@@ -66,7 +66,7 @@ export const Nav = () => {
 
 
     return (
-        <div className='flex justify-between' >
+        <div className='flex justify-between items-center px-4 py-2' >
             <Logo />
 
             <LargeScreenTag />

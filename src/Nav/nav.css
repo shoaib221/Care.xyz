@@ -1,0 +1,13 @@
+
+
+.nav {
+    font-weight: 500;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.active-nav {
+    color: var(--color4);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
