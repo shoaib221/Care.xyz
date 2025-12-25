@@ -1,4 +1,7 @@
+"use client"
+
 import { Loading2 } from '@/miscel/Loading';
+import { useNavContext } from '@/Nav/context';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
@@ -10,6 +13,7 @@ const Page = () => {
     const session = useSession()
     const stripe_session_id = searchParams.get("session_id")
     const [data, setData] = useState(null)
+    const { DownWindowTag } = useNavContext()
 
 
 
@@ -38,7 +42,8 @@ const Page = () => {
 
 
     return (
-        <div className="w-full max-w-150 mx-auto" >
+        <div className="relative w-full max-w-150 mx-auto" >
+            <DownWindowTag />
             <img src="/red-cross.jpg" className="h-32" />
             <div className="text-red-800 font-bold text-2xl" >Payment Failed</div>
             {/* <div>Status: { status }</div> */}

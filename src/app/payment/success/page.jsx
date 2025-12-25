@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import { Loading2 } from '@/miscel/Loading';
+import { useNavContext } from '@/Nav/context';
 
 let url = "/api/caregiving/after-payment"
 
@@ -15,6 +16,7 @@ const Page = () => {
     const session = useSession()
     const  stripe_session_id = searchParams.get("session_id")
     const [ data, setData ] = useState(null)
+    const { DownWindowTag } = useNavContext()
 
     useEffect(() => {
         if(!stripe_session_id || !session ) return
@@ -39,7 +41,8 @@ const Page = () => {
     if(!data) return <Loading2 />
 
     return (
-        <div className="w-full max-w-150 mx-auto" >
+        <div className="relative w-full max-w-150 mx-auto" >
+            <DownWindowTag />
             <img src="/green-tick.webp" className="h-32" />
             <div className="text-green-800 text-2xl font-bold" >Payment Successful</div>
             <div> Paid Amount: <span className="font-bold" > { data.booking.totalCost } </span>  USD  </div>
