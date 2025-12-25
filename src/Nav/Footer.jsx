@@ -9,7 +9,7 @@ import { Logo } from './Nav';
 export const Footer = () => {
 
     return (
-        <div id='footer' className='px-8' >
+        <div id='footer' className='px-8 mt-4' >
             <div style={{ display: 'flex', justifyContent: 'space-between' }} >
                 <Logo />
 

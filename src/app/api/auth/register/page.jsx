@@ -40,7 +40,9 @@ const Page = () => {
     }
 
     return (
-        <div className="max-w-150 mx-auto w-full px-12 py-6" >
+        <div className="max-w-150 mx-auto w-full px-12 py-6 flex-1" >
+            <div className="text-2xl text-(--color4) text-center font-bold" > Sign Up </div>
+
             <form className="flex flex-col" onSubmit={handleSubmit} >
                 <label>
                     <div className="font-bold" >Name</div>
@@ -63,11 +65,12 @@ const Page = () => {
                 </label>
 
                 <br/>
-                <button className="button-1234" type="submit" >Register</button>
+                <button className="gradbtn-1" type="submit" >Submit</button>
             </form>
+            <br/>
 
-            <div> Already Have an account? <span onClick={() => signIn()} >Login</span>  </div>
-            <div> Forgot Your password ? </div>
+            <div className="text-center" > Already Have an account? <span className="font-bold underline text-(--color4) cursor-pointer" onClick={() => signIn()} >Login</span>  </div>
+            {/* <div className="text-center" > Forgot password? <span className="font-bold underline text-(--color4) cursor-pointer text-center"  >Reset</span> </div> */}
         </div>
     )
 }

@@ -4,6 +4,7 @@ import { useRouter, useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavContext } from '@/Nav/context';
+import { Loading2 } from '@/miscel/Loading';
 
 
 
@@ -28,11 +29,13 @@ const Page = () => {
 
     }, [service_id])
 
+    if(!service) return <Loading2/>
+
     return (
         <div className='flex-1 w-full max-w-150 mx-auto p-2 relative' >
             <DownWindowTag />
             <div style={{ backgroundImage: `url(${service?.image})` }} 
-                className='w-full h-60 bg-cover bg-center bg-no-repeat'
+                className='w-full h-60 bg-cover bg-top bg-no-repeat'
             >
                 
             </div>

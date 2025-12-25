@@ -1,6 +1,7 @@
 import { User } from "@/app/api/auth/model";
 import { Booking, Service } from "./model";
 import Stripe from "stripe";
+import { SendMail } from "./send-invoice";
 const stripe = new Stripe(process.env.STRIPE_KEY);
 const YOUR_DOMAIN = 'http://localhost:3000'; // put in env
 
@@ -54,8 +55,8 @@ export const AfterPayment = async ( data ) => {
     console.log("payment success")
 
     try {
-        const { session_id } = data;
-        const session = await stripe.checkout.sessions.retrieve(session_id)
+        const { stripe_session_id } = data;
+        const session = await stripe.checkout.sessions.retrieve(stripe_session_id)
 
         const bookingId = session.metadata.bookingId;
 
@@ -83,6 +84,7 @@ export const AfterPayment = async ( data ) => {
                 }
             );
 
+            await SendMail( { booker, booking, service } )
             
             return {booker, service, booking: updatedBooking, stripe_status: "paid" }
         }

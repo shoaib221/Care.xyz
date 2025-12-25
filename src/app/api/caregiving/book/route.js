@@ -6,6 +6,7 @@ import { User } from "@/app/api/auth/model";
 
 import { CreatePayment, AfterPayment } from "../method";
 
+
 export const POST = async (req) => {
 
     try {
@@ -26,27 +27,32 @@ export const POST = async (req) => {
 
         await booking.save();
 
+        
+
         let res = await CreatePayment(booking)
 
+        console.log("here")
         if (!res.error) {
             return NextResponse.json({
-                status: 201,
                 booking, url: res.url,
-                ok: true
-            })
+            },
+                { status: 201 }
+            )
         }
 
         return NextResponse.json({
-            status: 400,
-            error: res.error,
-            ok: false
-        })
+            
+            error: res.error
+        }, 
+        { status: 400 }
+    )
 
     } catch (err) {
+        console.dir(err)
         return NextResponse.json({
-            status: 400,
-            error: err.message,
-            ok: false
-        })
+            
+            error: err.message
+            
+        }, { status: 400 } )
     }
 }

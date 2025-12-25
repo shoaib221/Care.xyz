@@ -7,6 +7,9 @@ import { useRouter } from 'next/navigation';
 import './nav.css';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
+
+
+
 export const NavProvider = ({ children }) => {
     const [navi, setNavi] = useState('/');
     const [down1, setDown1] = useState(false);

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useNavContext } from "@/Nav/context";
-
+import { Loading } from '@/miscel/Loading'
 
 
 
@@ -59,7 +59,7 @@ export default function Home() {
 			<br />
 
 			<div className="flex flex-wrap gap-4 justify-evenly" >
-				{services && services.map(elem => (
+				{services ? services.map(elem => (
 					<div onClick={() => router.push(`/service/${elem._id}`)}
 						title="Show Detail"
 						key={elem._id} className="p-2 rounded-lg box-shadow-1 min-w-64  cursor-pointer" >
@@ -67,7 +67,7 @@ export default function Home() {
 						<div style={{ backgroundImage: `url(${elem.image})` }} className="h-40 bg-cover" ></div>
 						<div className="font-bold" > {elem.name} </div>
 					</div>
-				))}
+				)) : <Loading /> }
 
 
 			</div>

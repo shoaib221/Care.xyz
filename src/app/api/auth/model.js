@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema({
     name: {
         type: String,
     },
-    description : {
+    bio : {
         type: String,
     },
     photo: {
@@ -23,6 +23,12 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         default: "student"
+    },
+    contact: {
+        type: String
+    },
+    Address: {
+        type: String
     }
 });
 

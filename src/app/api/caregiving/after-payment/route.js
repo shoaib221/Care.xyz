@@ -31,7 +31,7 @@ export const POST = async (req) => {
 
         if( res.error ) {
             return NextResponse.json(
-                ...res,
+                res,
                 { status: 400 }
             )
         }

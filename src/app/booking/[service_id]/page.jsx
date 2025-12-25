@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { useNavContext } from '@/Nav/context';
+import { Loading2 } from '@/miscel/Loading';
 
 
 const DateX = ({ set }) => {
@@ -130,18 +131,16 @@ const Page = () => {
                 startTime, endTime, totalCost, ...location, service_id,
             }
             let res = await axios.post('/api/caregiving/book', info);
-            if (res.data.ok) {
-                router.push(res.data.url)
-            }
-            else throw Error(res.data.error)
-
+            
+            router.push(res.data.url)
 
         } catch (err) {
             console.error(err.message);
-            alert("error")
+            
         }
     }
 
+    if(!service) return <Loading2 />
 
     return (
         <div className='flex-1 w-full max-w-150 mx-auto p-2 relative' >

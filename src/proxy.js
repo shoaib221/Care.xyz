@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
 
-const privateRoutes = ['/private', '/dashboard', '/secret', '/my-bookings'];
+const privateRoutes = ['/private', '/dashboard', '/booking', '/profile',  '/my-bookings'];
 
 
 
@@ -40,5 +40,7 @@ export async function proxy(req) {
 
 // Apply middleware only to these paths
 export const config = {
-    matcher: ['/private/:path*', '/secret/:path*', '/dashboard/:path*', '/my-bookings/:path*'  ],
+    matcher: ['/private/:path*', '/profile/:path*', '/dashboard/:path*', '/my-bookings/:path*',
+        '/booking/:path*'
+    ],
 };

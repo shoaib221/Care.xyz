@@ -19,8 +19,22 @@
 	--color4: rgb(0, 58, 19);
 	--color41: rgb(0, 97, 32);
 	--color42: rgb(117, 255, 163);
+	--color5: rgb(112, 0, 0);
 }
 
 
+.input-1 {
+	width: 100%;
+	padding: .5rem;
+	border-radius: .5rem;
+	margin-top: .5rem;
+	margin-bottom: .5rem;
+}
 
 
+.cen-ver {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
