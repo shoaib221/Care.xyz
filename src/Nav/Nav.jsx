@@ -23,38 +23,20 @@ export const Logo = () => {
 
 
 const ProfileLogo = () => {
-    const { data: session, status } = useSession()
+    
     const router = useRouter()
-    const [ profile, setProfile ] = useState(null)
-
-    useEffect(() => {
-        console.log("logo", status)
-        if (status !== 'authenticated') return;
-
-
-
-        async function Fetch() {
-            try {
-                console.log("status", status)
-                let res = await axios.get('/api/auth/profile');
-                console.log(res.data , "logo" );
-                setProfile(res.data.profile);
-            } catch (err) {
-                console.log(err.message);
-            }
-        }
-
-        Fetch();
-
-    }, [status])
-
-    if (status === 'loading') return <Loading />
+    const { profile, session_status } = useNavContext()
 
     function SignOut(e) {
         signOut()
     }
+    
 
-    if (profile) return (
+    if (session_status === 'loading') return <Loading />
+
+    
+
+    if(profile) return (
 
         <div className='flex' onClick={ () =>  router.push( "/profile" ) } >
             {/* <div className='button-1234' onClick={SignOut}>Sign Out</div> */}
@@ -65,7 +47,7 @@ const ProfileLogo = () => {
                 width={36}
                 height={36}
                 className='rounded-full cursor-pointer'
-                title={session.user.email}
+                title={profile.username}
             />
             
         </div>

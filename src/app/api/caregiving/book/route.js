@@ -23,7 +23,15 @@ export const POST = async (req) => {
 
         let body = await req.json();
 
-        let booking = Booking({ ...body, booker_id: booker._id });
+        console.log(body);
+
+        let booking = null;
+
+        if( body.booking ) booking = await Booking.findById( body.booking._id )
+        else booking = Booking({ ...body, booker_id: booker._id });
+
+        console.log(booking)
+
 
         await booking.save();
 
@@ -48,7 +56,7 @@ export const POST = async (req) => {
     )
 
     } catch (err) {
-        console.dir(err)
+        console.dir(err.message)
         return NextResponse.json({
             
             error: err.message

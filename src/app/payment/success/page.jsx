@@ -7,16 +7,16 @@ import { useSession } from 'next-auth/react';
 import { Loading2 } from '@/miscel/Loading';
 import { useNavContext } from '@/Nav/context';
 
-let url = "/api/caregiving/after-payment"
+let url = "/api/caregiving/after-payment";
 
 const Page = () => {
     
     const router = useRouter();
     const searchParams = useSearchParams();
-    const session = useSession()
-    const  stripe_session_id = searchParams.get("session_id")
-    const [ data, setData ] = useState(null)
-    const { DownWindowTag } = useNavContext()
+    const session = useSession();
+    const  stripe_session_id = searchParams.get("session_id");
+    const [ data, setData ] = useState(null);
+    const { DownWindowTag } = useNavContext();
 
     useEffect(() => {
         if(!stripe_session_id || !session ) return
@@ -41,7 +41,7 @@ const Page = () => {
     if(!data) return <Loading2 />
 
     return (
-        <div className="relative w-full max-w-150 mx-auto" >
+        <div className="relative w-full max-w-150 mx-auto px-4" >
             <DownWindowTag />
             <img src="/green-tick.webp" className="h-32" />
             <div className="text-green-800 text-2xl font-bold" >Payment Successful</div>

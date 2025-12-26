@@ -7,11 +7,29 @@ import { format } from 'date-fns';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useNavContext } from '@/Nav/context';
 import {Loading2} from '@/miscel/Loading';
+import { useRouter } from 'next/navigation';
 
 
 const Booking = ({ booking }) => {
     const [opener, setOpener] = useState(false)
-    const { status } = useSession()
+    //console.log( 'booking', booking)
+    const router = useRouter()
+
+    async function Checkout() {
+        try {
+            
+            const info = {
+                booking
+            }
+            let res = await axios.post('/api/caregiving/book', info);
+            
+            router.push(res.data.url)
+
+        } catch (err) {
+            console.error(err.message);
+            
+        }
+    }
 
 
 
@@ -36,7 +54,11 @@ const Booking = ({ booking }) => {
                     <div> <span className='font-bold' > To: </span> {format(booking.endTime, 'dd MMM yyyy, hh a')} </div>
                     <div> <span className='font-bold' > Cost: </span> {booking.totalCost} USD </div>
                     <div> <span className='font-bold' >Booking Status: </span> {booking.status} </div>
-                    <div> <span className='font-bold' > Payment Status: </span> {booking.paymentStatus} </div>
+                    <div> <span className='font-bold' > Payment Status: </span> {booking.paymentStatus} 
+                        
+                     </div>
+
+                    { booking.paymentStatus === 'unpaid' && <button className='bg-(--color4) text-white px-8 cursor-pointer hover:opacity-80 mx-2 py-1 rounded-xl' onClick={Checkout} > Pay </button> } 
                 </div>
             }
         </div>
@@ -68,10 +90,13 @@ const Page = () => {
     if(!bookings) return <Loading2 />
 
     return (
-        <div className='relative flex-1 flex flex-col gap-2' >
+        <div className='relative flex-1' >
+            <div className='text-2xl text-(--color4) font-bold px-2' >My Bookings</div>
             <DownWindowTag />
             {
-                bookings && bookings.map((elem, _) => <Booking key={_} booking={elem} />) 
+                bookings && <div  >
+                 {bookings.map((elem, _) => <Booking key={_} booking={elem} />) }
+                 </div>
             }
         </div>
     );

@@ -3,13 +3,16 @@
 import { useSession } from 'next-auth/react';
 import React from 'react';
 import { AdminDash, UserDashboard } from './comp';
+import { useNavContext } from '@/Nav/context';
+import { ForbiddenAccess } from '@/miscel/ForbiddenAccess';
+
 
 const Page = () => {
-    const { data: session, status } = useSession()
+    const { profile } = useNavContext()
 
-    if( session?.user?.role === 'admin' ) return <AdminDash/>
+    if( profile?.role === 'admin' ) return <AdminDash/>
     
-    return <UserDashboard/>
+    return <ForbiddenAccess />
 };
 
 export default Page;

@@ -51,21 +51,20 @@ export const CreatePayment = async ( paymentInfo ) => {
 
 
 export const AfterPayment = async ( data ) => {
-
-    console.log("payment success")
+    console.log("payment success");
 
     try {
         const { stripe_session_id } = data;
-        const session = await stripe.checkout.sessions.retrieve(stripe_session_id)
-
+        const session = await stripe.checkout.sessions.retrieve(stripe_session_id);
         const bookingId = session.metadata.bookingId;
+        let booking = await Booking.findOne({ _id: bookingId });
+        let booker = await User.findById(booking.booker_id);
+        let service = await Service.findById( booking.service_id );
 
-        let booking = await Booking.findOne({ _id: bookingId })
-        let booker = await User.findById(booking.booker_id)
-        let service = await Service.findById( booking.service_id )
 
+        if( booking.paymentStatus === 'paid' )
+            return {booker, service, booking, stripe_status: "paid" };
         
-
         if (session.payment_status === "paid") {
 
             const updation = {
@@ -84,7 +83,7 @@ export const AfterPayment = async ( data ) => {
                 }
             );
 
-            await SendMail( { booker, booking, service } )
+            await SendMail( { booker, booking: updatedBooking, service } )
             
             return {booker, service, booking: updatedBooking, stripe_status: "paid" }
         }

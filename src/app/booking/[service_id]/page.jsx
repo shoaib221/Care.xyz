@@ -212,7 +212,9 @@ const Page = () => {
             <br />
             <button
                 className='w-full gradbtn-1 mx-auto block'
-                onClick={Checkout} > Checkout ($ {totalCost}) </button>
+                onClick={Checkout} > 
+                Checkout ({totalCost} USD) 
+            </button>
         </div>
     );
 };

@@ -12,8 +12,6 @@ export const POST = async (req) => {
     try {
         const session = await getServerSession(authOptions);
 
-        
-
         if (!session) {
             return NextResponse.json(
                 { error: "Unauthorized" },
@@ -21,14 +19,9 @@ export const POST = async (req) => {
             );
         }
 
-        
-
         let body = await req.json();
-
         let res = await AfterPayment(body);
-
         
-
         if( res.error ) {
             return NextResponse.json(
                 res,
