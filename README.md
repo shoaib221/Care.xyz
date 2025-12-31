@@ -21,9 +21,10 @@ A website for hunting caregivers.
 - Stripe payment gateway
 - Next Auth  
 
+---
 
 ## 📦 Packages Used
-- `swiper.js
+- swiper.js
 - mongoose
 - swiper
 - framer motion
