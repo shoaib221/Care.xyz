@@ -1,3 +1,10 @@
+<p align="center">
+  <img src="images/banner1.jpg" width="700"  alt="Demo Image" />
+  <img src="images/banner2.jpg" width="700"  alt="Demo Image" />
+</p>
+
+---
+
 # 🚀 Care.in
 
 A website for hunting caregivers.
